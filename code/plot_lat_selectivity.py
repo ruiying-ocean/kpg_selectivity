@@ -4,6 +4,13 @@ import numpy as np
 import xarray as xr
 from cgeniepy.array import GriddedData
 
+arc_mask = xr.load_dataarray("/Users/yingrui/science/kpg_ecosystem/masked_array.nc")
+
+def mask_arctic(input_data):
+    "apply the new land-sea mask to the data"
+    input_data = input_data * arc_mask
+    return input_data
+
 def pft_change(model):
     #carbon_thresholds = model.eco_pars()['q_C']
 
@@ -57,18 +64,22 @@ pico_frac = exp3.get_var("eco2D_Size_Frac_Pico_Chl")/exp3.get_var("eco2D_Plankto
 light = exp3.get_var("phys_fxsw")
 light_diff = light[3] - light[0]
 
-
 fig, axs = plt.subplots(1,3, figsize=(7,2), sharex=True, tight_layout=True)
 plt.rcParams['font.family'] = 'sans-serif'
 plt.rcParams['font.sans-serif'] = 'Helvetica'
 
 extinction_rate = total_effect[-1]/total_effect[0] * 100
 
+## apply the new mask
+extinction_rate = mask_arctic(extinction_rate)
+light_diff = mask_arctic(light_diff)
+pico_frac = mask_arctic(pico_frac)
+
 axs[0].plot(extinction_rate.lat, extinction_rate.mean(dim='lon'))
 axs[1].plot(light_diff.lat, light_diff.mean(dim='lon'))
 axs[2].plot(pico_frac[0].lat, pico_frac[0].mean(dim='lon'))
 
-axs[0].set_title('Plankton extinction rate')
+axs[0].set_title('Plankton survivor ratio')
 axs[1].set_title('Solar radiation change')
 axs[2].set_title('preimpact Pico fraction')
 
