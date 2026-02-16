@@ -16,19 +16,17 @@
 
 import numpy as np
 
-time_span = np.arange(1, 1001, 1) - 0.5
-## stop time: the 30th year
-stop_yr = 30
+time_span = np.arange(1, 1001, 1)
 preimpact_solar_constant = 1360.33
 
 solar_constant = np.ones(len(time_span)) * preimpact_solar_constant
-## modify the 10-14th year
-solar_constant[10] = preimpact_solar_constant * 0.0
-solar_constant[11] = preimpact_solar_constant * 0.18
-solar_constant[12] = preimpact_solar_constant * 0.875
+## modify the 100-104th year
+solar_constant[100] = preimpact_solar_constant * 0.0
+solar_constant[101] = preimpact_solar_constant * 0.18
+solar_constant[102] = preimpact_solar_constant * 0.875
 
 ## write to file given the format
-with open('/Users/yingrui/Science/kpg_ecosystem/data/solar_constant.txt', 'w') as f:
+with open('/Users/yingrui/science/kpg_ecosystem/data/solar_constant.txt', 'w') as f:
     f.write('-START-OF-DATA-\n')
     for i in range(len(time_span)):
         f.write('{:.1f} {:.2f}\n'.format(time_span[i], solar_constant[i]))
