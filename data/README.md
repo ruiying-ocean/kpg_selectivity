@@ -31,6 +31,9 @@ The cGENIE model output is archived on Zenodo: [10.5281/zenodo.17742290](https:/
 | File | Description |
 |------|-------------|
 | `Tabor_Maastrichtian_proxy.xlsx` | Maastrichtian SST proxy compilation (Tabor et al.) |
+| `Hull2020_S10.csv` | Site-level bulk carbonate δ¹³C time series (Hull et al., 2020, Table S10) |
+| `Hull2020_S12.csv` | Site-level pre-impact δ¹³C values (Hull et al., 2020, Table S12) |
+| `Hull2020_S13.csv` | Bulk δ¹³C composite record (Hull et al., 2020, Table S13) |
 | `Zhang2019.csv` | Observational data from Zhang et al. (2019) |
 | `ccsm_mld_4xCO2.nc` | CCSM mixed layer depth under 4xCO2 (for MLD validation) |
 | `eccov4_mld_clim.nc` | ECCO v4 mixed layer depth climatology (for MLD validation) |
